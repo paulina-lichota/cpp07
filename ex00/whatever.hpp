@@ -6,9 +6,12 @@
 /*   By: plichota <plichota@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/05 17:09:34 by plichota          #+#    #+#             */
-/*   Updated: 2026/03/05 17:13:39 by plichota         ###   ########.fr       */
+/*   Updated: 2026/03/05 17:17:18 by plichota         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#ifndef WHATEVER_HPP
+# define WHATEVER_HPP
 
 #include <iostream>
 #include <string>
@@ -32,3 +35,5 @@ T max(T& a, T& b)
 {
     return (a > b) ? a : b;
 }
+
+#endif
