@@ -6,7 +6,7 @@
 /*   By: plichota <plichota@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/05 17:44:38 by plichota          #+#    #+#             */
-/*   Updated: 2026/03/06 17:44:10 by plichota         ###   ########.fr       */
+/*   Updated: 2026/03/06 17:57:11 by plichota         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,12 @@
 
 #include <iostream>
 #include <string>
+
+# define GREEN   	"\033[0;32m"
+# define YELLOW  	"\033[0;33m"
+# define BLUE    	"\033[0;34m"
+# define MAGENTA 	"\033[0;35m"
+# define RESET   	"\033[0m"
 
 // I have to put declaration in the .hpp or .tpp file because the compiler needs
 // to see all the code of the template. .cpp files are compiled later.
@@ -31,8 +37,10 @@ class Array
         Array(const Array& other);
         Array& operator=(const Array& other);
         ~Array();
+        T& operator[](unsigned int index); // const alla fine indica immutabilità
         const T& operator[](unsigned int index) const; // const alla fine indica immutabilità
         unsigned int size() const;
+        void print() const;
 };
 
 #include "Array.tpp"

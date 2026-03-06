@@ -6,7 +6,7 @@
 /*   By: plichota <plichota@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/05 17:44:41 by plichota          #+#    #+#             */
-/*   Updated: 2026/03/06 17:19:16 by plichota         ###   ########.fr       */
+/*   Updated: 2026/03/06 18:09:53 by plichota         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,53 @@
 int main()
 {
     // Try to compile int * a = new int(); then display *a
-    Array<int> a(5);
+    {
+        std::cout << GREEN << "===== Creo array ======" << RESET << std::endl;
+        Array<int> a(5);
+        a.print();
 
-    //onstruction by copy and assignment operator. In both cases, modifying either the
-    // original array or its copy after copying musn’t affect the other array
+        std::cout << GREEN << "===== Size ======" << RESET << std::endl;        
+        std::cout << "size a: " << a.size() << std::endl;
 
-    // Elements can be accessed through the subscript operator: [ ].
+        std::cout << GREEN << "===== Esempio copy constructor ======" << RESET << std::endl;
+        Array<int> b(a);
+        b.print();
+        std::cout << "size b: " << b.size() << std::endl;
 
-    // When accessing an element with the [ ] operator, if its index is out of bounds, an
-    // std::exception is thrown.
+        std::cout << GREEN << "===== Modifying copy (b) does not affect original (a) ======" << RESET << std::endl;
+        b = Array<int>(7);
+        for (size_t i = 0; i < 7; i++)
+            b[i] = i;
+        std::cout << "size b: " << b.size() << std::endl;
+        b.print();
+        std::cout << "size a: " << a.size() << std::endl;
+        a.print();
 
-    // size()
+        std::cout << GREEN << "===== Modifying original (a) does not affect copy (b) ======" << RESET << std::endl;
+        a[0] = 42;
+        std::cout << "a[0] = " << a[0] << std::endl;
+        std::cout << "b[0] = " << b[0] << std::endl;
+
+        std::cout << GREEN << "===== Esempio assignment operator = ======" << RESET << std::endl;
+        a = b;
+        std::cout << "size b: " << b.size() << std::endl;
+        b.print();
+        std::cout << "size a: " << a.size() << std::endl;
+        a.print();
+
+        std::cout << GREEN << "===== Esempio subscript operator [] ======" << RESET << std::endl;
+        for (size_t i = 0; i < a.size(); i++)
+            std::cout << "a[" << i << "] = " << a[i] << std::endl;
+
+        std::cout << GREEN << "===== Esempio std::exception index out of bounds ======" << RESET << std::endl;
+        try
+        {
+            std::cout << a[10] << std::endl;
+        }
+        catch(const std::exception& e)
+        {
+            std::cerr << MAGENTA << e.what() << RESET << '\n';
+        }
+    
+    }
 }

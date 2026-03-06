@@ -6,7 +6,7 @@
 /*   By: plichota <plichota@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/05 18:00:53 by plichota          #+#    #+#             */
-/*   Updated: 2026/03/06 17:46:50 by plichota         ###   ########.fr       */
+/*   Updated: 2026/03/06 18:03:35 by plichota         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,22 @@ const T& Array<T>::operator[](unsigned int index) const
 }
 
 template <class T>
+T& Array<T>::operator[](unsigned int index)
+{
+    if (index >= _size)
+        throw std::out_of_range("Index out of bounds");
+    return arr[index];
+}
+
+template <class T>
 unsigned int Array<T>::size() const
 {
     return _size;
+}
+
+template <class T>
+void Array<T>::print() const
+{
+    for (unsigned int i = 0; i < _size; ++i)
+        std::cout << "arr[" << i << "] = " << arr[i] << std::endl;
 }
