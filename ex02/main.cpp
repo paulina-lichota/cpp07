@@ -6,13 +6,25 @@
 /*   By: plichota <plichota@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/05 17:44:41 by plichota          #+#    #+#             */
-/*   Updated: 2026/03/06 18:09:53 by plichota         ###   ########.fr       */
+/*   Updated: 2026/03/06 18:25:14 by plichota         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Array.hpp"
 #include <iostream>
 #include <string>
+
+class Test {
+    public:
+        Test() : a(0) {}
+        Test(int a) : a(a) {}
+        int a;
+};
+
+std::ostream& operator<<(std::ostream& os, const Test& t) {
+    os << t.a;
+    return os;
+}
 
 int main()
 {
@@ -64,6 +76,21 @@ int main()
         {
             std::cerr << MAGENTA << e.what() << RESET << '\n';
         }
-    
+    }
+    {
+        std::cout << GREEN << "===== Esempio con array di oggetti ======" << RESET << std::endl;
+        Array<Test> tests(5);
+        for (size_t i = 0; i < tests.size(); i++)
+            tests[i] = Test(i);
+        tests.print();
+
+        std::cout << GREEN << "===== Esempio con costruttore di copia (oggetti) ======" << RESET << std::endl;
+        Array<Test> tests2(tests);
+        tests2.print();
+
+        std::cout << GREEN << "===== Modificare copia non ha effetto su originale ======" << RESET << std::endl;
+        tests[2] = Test(42);
+        std::cout << "tests[2] = " << tests[2] << std::endl;
+        std::cout << "tests2[2] = " << tests2[2] << std::endl;
     }
 }
