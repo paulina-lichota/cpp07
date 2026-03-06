@@ -6,7 +6,7 @@
 /*   By: plichota <plichota@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/05 17:44:38 by plichota          #+#    #+#             */
-/*   Updated: 2026/03/05 18:12:32 by plichota         ###   ########.fr       */
+/*   Updated: 2026/03/06 17:44:10 by plichota         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,15 @@ class Array
 {
     private:
         T* arr;
+        unsigned int _size;
     public:
         Array();
         Array(unsigned int n);
         Array(const Array& other);
         Array& operator=(const Array& other);
         ~Array();
+        const T& operator[](unsigned int index) const; // const alla fine indica immutabilità
+        unsigned int size() const;
 };
 
 #include "Array.tpp"
